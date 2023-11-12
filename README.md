@@ -1,5 +1,11 @@
 # python-mongo
 
+## Gereksinimler
+apt install python3
+apt install python3-pip
+pip install pymongo
+
+## mongocli
 use admin
 
 db.createUser({
@@ -10,7 +16,6 @@ db.createUser({
 
 use demo;
 
-#Tek bir belge ekleme komutunun yapısı ve örnekleri. Örnek: 
 db.users.insert({ id: 0, name: "Selim", department: "OSS", code: 100 })
 
 db.users.insertMany([
@@ -20,13 +25,6 @@ db.users.insertMany([
 ])
 
 db.users.find({})
-
-db.users.updateOne([
-		{ name: "Enes"},
-		{
-			$set: { department: "OSS" }	
-		}
-])
 
 db.users.updateOne(
     { Name: "Leyla" },
