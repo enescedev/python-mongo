@@ -11,12 +11,12 @@ db.createUser({
 use demo;
 
 #Tek bir belge ekleme komutunun yapısı ve örnekleri. Örnek: 
-db.users.insert({ id: 0, name: "Selim", department: "OSS", code: 200 })
+db.users.insert({ id: 0, name: "Selim", department: "OSS", code: 100 })
 
 db.users.insertMany([
     { id: 1, name: "Enes", department: "HR", code: 200 },
-    { id: 2, name: "Leyla", department: "HR", code: 200 },
-    { id: 3, name: "David", department: "SE", code: 200 }
+    { id: 2, name: "Leyla", department: "HR", code: 300 },
+    { id: 3, name: "David", department: "SE", code: 400 }
 ])
 
 db.users.find({})
@@ -35,13 +35,23 @@ db.users.updateOne(
 
 db.users.find({name: "Leyla"})
 
-----
+---
 
 > db.users.updateOne(     { name: "Leyla" },     { $set: { code: 700 } } )
 { "acknowledged" : true, "matchedCount" : 0, "modifiedCount" : 0 }
-> db.inventory.find({})
-{ "_id" : ObjectId("65512c37155fb940a97a7c90"), "id" : 0, "name" : "Selim", "department" : "OSS", "code" : 200 }
+> db.users.find({})
+{ "_id" : ObjectId("65512c37155fb940a97a7c90"), "id" : 0, "name" : "Selim", "department" : "OSS", "code" : 100 }
 { "_id" : ObjectId("65512c4a155fb940a97a7c91"), "id" : 1, "name" : "Enes", "department" : "HR", "code" : 200 }
-{ "_id" : ObjectId("65512c4a155fb940a97a7c92"), "id" : 2, "name" : "Leyla", "department" : "HR", "code" : 200 }
-{ "_id" : ObjectId("65512c4a155fb940a97a7c93"), "id" : 3, "name" : "David", "department" : "SE", "code" : 200 }
+{ "_id" : ObjectId("65512c4a155fb940a97a7c92"), "id" : 2, "name" : "Leyla", "department" : "HR", "code" : 300 }
+{ "_id" : ObjectId("65512c4a155fb940a97a7c93"), "id" : 3, "name" : "David", "department" : "SE", "code" : 400 }
 >
+
+---
+
+use demo
+
+db.users.deleteOne({ "_id": ObjectId("") })
+
+db.users.drop()
+
+db.dropDatabase()
